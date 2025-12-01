@@ -19,7 +19,6 @@ def ingester(string):
     instructions = []
     instructions = string.split("\n")
     for i in range(len(instructions)-1):
-        print(i, instructions[i])
         instructions[i] = [instructions[i][0],int(instructions[i][1:])]
     #we now have an array of instructions in the format ["L", 99]
     return instructions
