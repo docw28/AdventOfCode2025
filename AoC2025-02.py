@@ -12,7 +12,14 @@ def ingester(input):
     return ID_ranges
 
 def valid_ID(value):
-    return True
+    value = str(value)
+    halves = []
+    val_length = len(value)
+    if ((val_length) % 2) != 0:
+        return True
+    halves.append(value[int(val_length/2):])
+    halves.append(value[:int(val_length/2)])
+    return halves
 
 
 
@@ -26,8 +33,9 @@ def valid_ID(value):
 data = ingester(test_input)
 #data = ingester(puzzle_input)
 
-for range in data:
+print(valid_ID(11))
+"""for range in data:
     for value in range:
         if not valid_ID(value):
-            total += value
+            total += value"""
 print("Total of all invalid IDs is: ", total)
