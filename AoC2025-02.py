@@ -13,23 +13,32 @@ def ingester(input):
     return ID_ranges
 
 
-def valid_ID(value): # part 2: instead of only checking by bisecting, need to check every subdivision less than or equal to half
+def valid_ID(value): 
     value = str(value)
     length = len(value)
-    for i in range(1, math.floor(length/2)+1):
-        if length % i == 0:
-            j = int(length / i)
-            print(i, ", ", j)
-    
-    return False
+    for div_size in range(1, math.floor(length/2)+1):  # need to check all subdivisions that are at most half the size of the value
+        if length % div_size == 0:                     # and only those that will divide evenly
+            # print("Division Size: ",div_size)
+            i = 0
+            while True:
+                s1, e1 = i, i+div_size # first comparison subdivision
+                s2, e2 = i+div_size, i+div_size+div_size
+                # print(value[s1:e1],",",value[s2:e2])
+                if value[s1:e1] == value[s2:e2]:
+                    i += div_size
+                elif i >= (length-div_size):
+                    return False
+                else:
+                    break
+    return True
 
 #----------------------------------------------
-data = ingester(test_input)
-#data = ingester(puzzle_input)
+#data = ingester(test_input)
+data = ingester(puzzle_input)
 
-valid_ID(str(123456789012))
-"""for range in data:
-    for value in range:
+for r in data:
+ for value in r:
+        # print(value)
         if not valid_ID(value):
-            total += value"""
-#print("Total of all invalid IDs is: ", total)
+            total += value
+print("Total of all invalid IDs is: ", total)
