@@ -1,4 +1,5 @@
-import math
+import math, time
+start_time = time.time()
 test_input = "11-22,95-115,998-1012,1188511880-1188511890,222220-222224,1698522-1698528,446443-446449,38593856-38593862,565653-565659,824824821-824824827,2121212118-2121212124"
 # total of invalids for test_input: 1227775554
 puzzle_input = str(open("Day2Input.txt").read())
@@ -42,3 +43,4 @@ for r in data:
         if not valid_ID(value):
             total += value
 print("Total of all invalid IDs is: ", total)
+print("Execution time: ", round((time.time() - start_time) * 1000, ), "ms")
