@@ -22,7 +22,8 @@ def find_highest_joltage(bank):
 
     return highest_joltage
 
-banks = ingester(test_input)
+#banks = ingester(test_input)
+banks = ingester(puzzle_input)
 
 for bank in banks:
     jolt_total += find_highest_joltage(bank)
