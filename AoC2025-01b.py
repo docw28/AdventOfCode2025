@@ -1,3 +1,5 @@
+import time
+start_time = time.time()
 # L = -, R = +. get new number then +100 if <0 or -100 if >99?
 test_input = """L68\nL30\nR48\nL5\nR60\nL55\nL1\nL99\nR14\nL82"""
 puzzle_input = str(open("Day1Input.txt").read())
@@ -37,8 +39,9 @@ instructions = ingester(puzzle_input)
 for i in range(len(instructions)):
     dial_result = dialer(current_pos, instructions[i])
     current_pos = dial_result[0]
-    print(instructions[i], prev_pos, current_pos, dial_result[1])
+    #print(instructions[i], prev_pos, current_pos, dial_result[1])
     password += dial_result[1]
     prev_pos = current_pos
         
 print("\nPassword: ", password)
+print("Completion time: ", round((time.time() - start_time) * 1000), "ms")
