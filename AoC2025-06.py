@@ -11,12 +11,15 @@ def ingester(string):
     rows = string.split("\n")
     for row in rows:
         input_array.append(row.split())
+    print(input_array)
     equations = len(input_array[0])
+    print(equations)
     for i in range(equations):
         equations_array.append([]) 
+    print(equations_array)
     for i in range(equations):
         for j in range(len(input_array)):
-            equations_array[j].append(input_array[i][j])
+            equations_array[i].append(input_array[j][i])
     return equations_array
     
 def equation_solver(equation):
@@ -36,8 +39,9 @@ def equation_solver(equation):
 input = ingester(puzzle_input)
 print(input)
 
-#for equation in input:
-    #total += equation_solver(equation)
+
+for equation in input:
+    total += equation_solver(equation)
 
 
 print("Total: ", total)
