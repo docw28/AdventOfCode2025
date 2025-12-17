@@ -12,32 +12,22 @@ def ingester(string):
         array[i] = array[i].split(",")
         array[i][0] = int(array[i][0])
         array[i][1] = int(array[i][1])
-        
     return array
 
-def hypotenuse(coord1, coord2):
-    x1, y1 = coord1[0], coord1[1]
-    x2, y2 = coord2[0], coord2[1]
-    number = m.sqrt(abs(x1-x2)**2 + abs(y1-y2)**2)
-
-    return number
-
-def area(coord1, coord2):
+def find_area(coord1, coord2):
     x1, y1 = coord1[0], coord1[1]
     x2, y2 = coord2[0], coord2[1]
     number = (abs(x1-x2)+1) * (abs(y1-y2)+1)
     return number
 
-input = ingester(test_input)
-
-largest_distance = 0
 largest_area = 0
+input = ingester(puzzle_input)
+
 for coord1 in input:
     for coord2 in input:
-        hyp = hypotenuse(coord1, coord2)
-        if hyp > largest_distance:
-            largest_distance = hyp
-            largest_area = area(coord1,coord2)
+        area = find_area(coord1, coord2)
+        if area > largest_area:
+            largest_area = area
 
-print("Largest possible rectangle: ", largest_area, "units^2")
-print("Completion time: ", round((time.time() - start_time)*1000), "ms")
+print("Largest possible rectangle: ", largest_area)
+print("Completion time:", round((time.time() - start_time)*1000), "ms")
